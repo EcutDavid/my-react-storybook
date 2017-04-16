@@ -1,17 +1,16 @@
 import React from 'react';
-import { storiesOf, action } from '@kadira/storybook';
-import Button from './Button';
+import { storiesOf } from '@kadira/storybook';
 import TreeControl from 'react-tree-control';
+import TwoLayerTreeControl from './treeControl/twoLayer';
+import ThreeLayerTreeControl from './treeControl/threeLayer';
 
 storiesOf('Tree control', module)
   .add('Default', () => (
     <TreeControl />
-  ));
-
-storiesOf('Button', module)
-  .add('with text', () => (
-    <Button onClick={action('clicked')}>Hello Button</Button>
   ))
-  .add('with some emoji', () => (
-    <Button onClick={action('clicked')}>😀 😎 👍 💯</Button>
+  .add('Two layer', () => (
+    <TwoLayerTreeControl />
+  ))
+  .add('Three layer', () => (
+    <ThreeLayerTreeControl />
   ));
