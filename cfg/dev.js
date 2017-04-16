@@ -1,39 +1,28 @@
-'use strict'
+var webpack = require('webpack');
+var baseConfig = require('./base');
+var defaultSettings = require('./defaults');
 
-let path = require('path')
-let webpack = require('webpack')
-let baseConfig = require('./base')
-let defaultSettings = require('./defaults')
-
-// Add needed plugins here
-let BowerWebpackPlugin = require('bower-webpack-plugin')
-
-let config = Object.assign({}, baseConfig, {
+var config = Object.assign({}, baseConfig, {
   entry: [
-    'webpack-dev-server/client?http://127.0.0.1:' + defaultSettings.port,
+    // https://webpack.js.org/guides/hmr-react/
+    'react-hot-loader/patch',
+    'webpack-dev-server/client?http://127.0.0.1:' + process.env.PORT,
     'webpack/hot/only-dev-server',
     './src/index'
   ],
+  devServer: {
+    contentBase: './src/',
+    hot: true,
+    publicPath: '/assets/',
+    port: process.env.PORT
+  },
   cache: true,
   devtool: 'eval-source-map',
   plugins: [
     new webpack.HotModuleReplacementPlugin(),
-    new webpack.NoErrorsPlugin(),
-    new BowerWebpackPlugin({
-      searchResolveModulesDirectories: false
-    })
+    new webpack.NoEmitOnErrorsPlugin()
   ],
   module: defaultSettings.getDefaultModules()
-})
+});
 
-// Add needed loaders to the defaults here
-config.module.loaders.push({
-  test: /\.(js|jsx)$/,
-  loader: 'react-hot!babel-loader',
-  include: [].concat(
-    config.additionalPaths,
-    [ path.join(__dirname, '/../src') ]
-  )
-})
-
-module.exports = config
+module.exports = config;

@@ -1,49 +1,56 @@
-'use strict'
-const path = require('path')
-const srcPath = path.join(__dirname, '/../src')
-const dfltPort = 8000
+var path = require('path');
+
 function getDefaultModules() {
   return {
-    preLoaders: [{
-        test: /\.(js|jsx)$/,
-        include: srcPath,
-        loader: 'eslint-loader'
-      }],
     loaders: [
       {
         test: /\.css$/,
-        loader: 'style-loader!css-loader!postcss-loader'
-      },
-      {
-        test: /\.sass/,
-        loader: 'style-loader!css-loader!postcss-loader!sass-loader?outputStyle=expanded&indentedSyntax'
-      },
-      {
+        use: [
+          'style-loader',
+          'css-loader',
+          'postcss-loader'
+        ]
+      }, {
         test: /\.scss/,
-        loader: 'style-loader!css-loader!postcss-loader!sass-loader?outputStyle=expanded'
-      },
-      {
-        test: /\.less/,
-        loader: 'style-loader!css-loader!postcss-loader!less-loader'
-      },
-      {
-        test: /\.styl/,
-        loader: 'style-loader!css-loader!postcss-loader!stylus-loader'
-      },
-      {
-        test: /\.(png|jpg|gif|woff|woff2)$/,
-        loader: 'url-loader?limit=8192'
-      },
-      {
-        test: /\.(mp4|ogg|svg)$/,
-        loader: 'file-loader'
+        use: [
+          {
+            loader: 'style-loader'
+          }, {
+            loader: 'css-loader'
+          }, {
+            loader: 'postcss-loader'
+          }, {
+            loader: 'sass-loader',
+            options: {
+              outputStyle: 'expanded'
+            }
+          }
+        ]
+      }, {
+        test: /\.(png|jpg|gif|woff|woff2|ttf)(\?v=\d+\.\d+\.\d+)?$/,
+        use: [
+          {
+            loader: 'url-loader',
+            options: {
+              limit: 8192
+            }
+          }
+        ]
+      }, {
+        test: /\.(mp4|ogg|svg|eot)(\?v=\d+\.\d+\.\d+)?$/,
+        use: [
+          'file-loader'
+        ]
+      }, {
+        test: /\.(js|jsx)$/,
+        use: [
+          'babel-loader'
+        ],
+        include: path.join(__dirname, '/../src')
       }
     ]
-  }
+  };
 }
 module.exports = {
-  srcPath: srcPath,
-  publicPath: '/assets/',
-  port: dfltPort,
   getDefaultModules: getDefaultModules
-}
+};

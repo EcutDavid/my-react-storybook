@@ -1,48 +1,23 @@
-'use strict'
-let path = require('path')
-let defaultSettings = require('./defaults')
+var path = require('path');
 
-// Additional npm or bower modules to include in builds
-// Add all foreign plugins you may need into this array
-// @example:
-// let npmBase = path.join(__dirname, '../node_modules')
-// let additionalPaths = [ path.join(npmBase, 'react-bootstrap') ]
-let additionalPaths = []
+var srcPath = path.join(__dirname, '/../src');
 
 module.exports = {
-  additionalPaths: additionalPaths,
-  port: defaultSettings.port,
-  debug: true,
   devtool: 'eval',
   output: {
     path: path.join(__dirname, '/../dist/assets'),
-    filename: 'app.js',
-    publicPath: `.${defaultSettings.publicPath}`
-  },
-  devServer: {
-    contentBase: './src/',
-    historyApiFallback: true,
-    hot: true,
-    port: defaultSettings.port,
-    publicPath: defaultSettings.publicPath,
-    noInfo: false
+    filename: process.env.REACT_WEBPACK_ENV === 'dist' ? 'app[hash].js' : 'app.js',
+    publicPath: './assets/'
   },
   resolve: {
-    extensions: ['', '.js', '.jsx'],
+    extensions: ['.js', '.jsx'],
     alias: {
-      actions: `${defaultSettings.srcPath}/actions/`,
-      components: `${defaultSettings.srcPath}/components/`,
-      sources: `${defaultSettings.srcPath}/sources/`,
-      stores: `${defaultSettings.srcPath}/stores/`,
-      styles: `${defaultSettings.srcPath}/styles/`,
-      config: `${defaultSettings.srcPath}/config/` + process.env.REACT_WEBPACK_ENV
+      actions: srcPath + '/actions/',
+      components: srcPath + '/components/',
+      sources: srcPath + '/sources/',
+      stores: srcPath + '/stores/',
+      styles: srcPath + '/styles/'
     }
   },
-  module: {},
-  postcss: function () {
-    return [
-      require('precss'),
-      require('autoprefixer')
-    ]
-  }
-}
+  module: {}
+};
