@@ -11,7 +11,8 @@
     "deploy": "gh-pages -d dist",
     "test": "mocha --require babel-register",
     "storybook": "start-storybook -p 6006",
-    "build-storybook": "build-storybook -o ./docs"
+    "build-storybook": "build-storybook -o ./docs",
+    "deploy-storybook": "storybook-to-ghpages"
   },
   "repository": "",
   "keywords": [],
@@ -55,6 +56,7 @@
     "@kadira/storybook": "^2.21.0"
   },
   "dependencies": {
+    "@kadira/storybook-deployer": "^1.2.0",
     "foundation-sites": "6.2.4-rc1",
     "normalize.css": "^4.0.0",
     "react": "^15.0.0",
