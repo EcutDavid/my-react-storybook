@@ -18,6 +18,7 @@
   "keywords": [],
   "author": "David Guan(davidguandev@gmail.com)",
   "devDependencies": {
+    "@davidguan/storybook-deployer": "^1.2.0",
     "autoprefixer": "^6.3.6",
     "babel-core": "^6.0.0",
     "babel-eslint": "^6.0.0",
@@ -52,8 +53,7 @@
     "style-loader": "^0.13.0",
     "url-loader": "^0.5.6",
     "webpack": "^2.3.2",
-    "webpack-dev-server": "2.1.0-beta.0",
-    "@kadira/storybook": "^2.21.0"
+    "webpack-dev-server": "2.1.0-beta.0"
   },
   "dependencies": {
     "@kadira/storybook-deployer": "^1.2.0",
@@ -61,6 +61,6 @@
     "normalize.css": "^4.0.0",
     "react": "^15.0.0",
     "react-dom": "^15.0.0",
-    "react-tree-control": "0.0.7"
+    "react-tree-control": "0.0.8"
   }
 }

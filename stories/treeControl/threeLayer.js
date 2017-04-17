@@ -11,6 +11,9 @@ const nodes = {
     ]
 };
 
-export default () => (
-  <TreeControl nodes={nodes} />
+export default (props) => (
+  <TreeControl
+    defaultExpand={props.defaultExpand}
+    nodes={nodes}
+  />
 );

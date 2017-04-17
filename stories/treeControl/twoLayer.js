@@ -9,5 +9,5 @@ const nodes = {
 };
 
 export default () => (
-  <TreeControl nodes={nodes} />
+  <TreeControl defaultExpand nodes={nodes} />
 );
