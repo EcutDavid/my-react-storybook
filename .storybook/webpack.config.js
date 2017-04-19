@@ -12,7 +12,13 @@ module.exports = {
   ],
   module: {
     loaders: [
-      // add your custom loaders.
-    ],
-  },
+      {
+        test: /\.(js|jsx)$/,
+        loader: 'babel-loader'
+      }, {
+        test: /\.scss/,
+        loaders: ['style-loader', 'css-loader', 'postcss-loader', 'sass-loader']
+      }
+    ]
+  }
 };
