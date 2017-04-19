@@ -1,4 +1,4 @@
-## Why creating a story book?
+## Why creating a storybook?
 - It's a good API reference
 - It's a nice work showcase
 - It gives us more motivations to **write reusable UI components**😀
